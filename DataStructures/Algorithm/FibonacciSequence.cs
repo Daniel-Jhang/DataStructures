@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataStructures
+namespace DataStructures.Algorithm
 {
     public static class FibonacciSequence
     {
@@ -33,7 +33,7 @@ namespace DataStructures
             {
                 return n;
             }
-            return (RecursionFibonacci(n - 1) + RecursionFibonacci(n - 2));
+            return RecursionFibonacci(n - 1) + RecursionFibonacci(n - 2);
         }
     }
 }

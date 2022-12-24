@@ -1,4 +1,7 @@
-﻿namespace DataStructures
+﻿using DataStructures.AbstractDataType;
+using DataStructures.Algorithm;
+
+namespace DataStructures
 {
     internal class Program
     {
@@ -54,9 +57,87 @@
             #endregion
 
             #region FibonacciSequence
-            FibonacciSequence.GetFibonacciNumber(20);
-            Console.WriteLine();
-            Console.WriteLine(FibonacciSequence.RecursionFibonacci(20));
+            //FibonacciSequence.GetFibonacciNumber(20);
+            //Console.WriteLine();
+            //Console.WriteLine(FibonacciSequence.RecursionFibonacci(20));
+            #endregion
+
+            #region HanoiTowers
+            //HanoiTowers.Towers(3, 'A', 'B', 'C');
+            #endregion
+
+            #region SelectionSort
+            //List<int> numbers = new List<int> { 56, 1, 99, 67, 89, 23, 44, 12, 78, 34 };
+            //var result = SelectionSort.DoSelectionSort(numbers).ToList();
+            //foreach (var item in result)
+            //{
+            //    Console.Write(item + " ");
+            //}
+
+            //SelectionSort.DoSelectionSort_V2(numbers);
+            //foreach (var item in numbers)
+            //{
+            //    Console.Write(item + " ");
+            //}
+            #endregion
+
+            // TODO:
+            // TSet.聯集
+
+            #region SparseMatrix
+            SparseMatrix sparseMatrixA = new SparseMatrix(6, 6, 6);
+            sparseMatrixA.SparseMatrixArray[0].Row = 1;
+            sparseMatrixA.SparseMatrixArray[0].Column = 3;
+            sparseMatrixA.SparseMatrixArray[0].Value = 3;
+            sparseMatrixA.SparseMatrixArray[1].Row = 1;
+            sparseMatrixA.SparseMatrixArray[1].Column = 5;
+            sparseMatrixA.SparseMatrixArray[1].Value = 4;
+            sparseMatrixA.SparseMatrixArray[2].Row = 2;
+            sparseMatrixA.SparseMatrixArray[2].Column = 3;
+            sparseMatrixA.SparseMatrixArray[2].Value = 5;
+            sparseMatrixA.SparseMatrixArray[3].Row = 2;
+            sparseMatrixA.SparseMatrixArray[3].Column = 4;
+            sparseMatrixA.SparseMatrixArray[3].Value = 7;
+            sparseMatrixA.SparseMatrixArray[4].Row = 4;
+            sparseMatrixA.SparseMatrixArray[4].Column = 2;
+            sparseMatrixA.SparseMatrixArray[4].Value = 2;
+            sparseMatrixA.SparseMatrixArray[5].Row = 4;
+            sparseMatrixA.SparseMatrixArray[5].Column = 3;
+            sparseMatrixA.SparseMatrixArray[5].Value = 6;
+
+            SparseMatrix sparseMatrixB = new SparseMatrix(6, 3, 5);
+            sparseMatrixB.SparseMatrixArray[0].Row = 1;
+            sparseMatrixB.SparseMatrixArray[0].Column = 1;
+            sparseMatrixB.SparseMatrixArray[0].Value = 2;
+            sparseMatrixB.SparseMatrixArray[1].Row = 3;
+            sparseMatrixB.SparseMatrixArray[1].Column = 1;
+            sparseMatrixB.SparseMatrixArray[1].Value = 3;
+            sparseMatrixB.SparseMatrixArray[2].Row = 4;
+            sparseMatrixB.SparseMatrixArray[2].Column = 1;
+            sparseMatrixB.SparseMatrixArray[2].Value = 4;
+            sparseMatrixB.SparseMatrixArray[3].Row = 4;
+            sparseMatrixB.SparseMatrixArray[3].Column = 2;
+            sparseMatrixB.SparseMatrixArray[3].Value = 7;
+            sparseMatrixB.SparseMatrixArray[4].Row = 5;
+            sparseMatrixB.SparseMatrixArray[4].Column = 1;
+            sparseMatrixB.SparseMatrixArray[4].Value = 1;
+            Console.WriteLine("Matrix before Transpose");
+            sparseMatrixA.PrintMatrix();
+            var result = sparseMatrixA.TypicalTranspose();
+            Console.WriteLine("Matrix after Transpose");
+            result.PrintMatrix();
+
+            Console.WriteLine("Matrix before FasterTranspose");
+            sparseMatrixA.PrintMatrix();
+            var fasterResult = sparseMatrixA.FasterTranspose_v1();
+            Console.WriteLine("Matrix after FasterTranspose");
+            fasterResult.PrintMatrix();
+
+            Console.WriteLine("Matrix before Multiplication");
+            sparseMatrixA.PrintMatrix();
+            var multiplyResult = sparseMatrixA.SparseMatrixMultiply_v1(sparseMatrixB);
+            Console.WriteLine("Matrix after Multiplication");
+            multiplyResult.PrintMatrix();
             #endregion
         }
     }
