@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataStructures
+namespace DataStructures.Algorithm
 {
     public class BinarySearch
     {
@@ -73,7 +73,7 @@ namespace DataStructures
                 else if (guess < numberToFind)
                 {
                     //low = mid + 1;
-                    return RecursionBinarySerach(numbers, numberToFind, mid+1, high);
+                    return RecursionBinarySerach(numbers, numberToFind, mid + 1, high);
                 }
             }
 

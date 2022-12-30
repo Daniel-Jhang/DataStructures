@@ -1,17 +1,24 @@
 ﻿namespace DataStructures.AbstractDataType
 {
+    /// <summary>
+    /// 稀疏矩陣的資料結構
+    /// </summary>
     public class SparseMatrix
     {
         // https://www.geeksforgeeks.org/operations-sparse-matrices/
         // https://blog.onemid.net/blog/ds_fast_transpose/ (Faster Matrix Transpose)
         // https://blog.onemid.net/blog/ds_sparse_matrix_mul/ (SPARSE MATRIX MULTIPLICATION)
 
+        /// <summary>
+        /// 屬性
+        /// </summary>
         private static int MaxTerms = 20;
         private int Rows { get; set; } // 矩陣中的 Row 數
         private int Cols { get; set; } // 矩陣中的 Column 數
         private int Terms { get; set; } // 矩陣中的非零 element 數
         private int Capacity { get; set; } = MaxTerms; // 稀疏矩陣數組的大小
-        public MatrixTerm[] SparseMatrixArray { get; set; } // 存放稀疏矩陣的 Array
+        public MatrixTerm[] SparseMatrixArray { get; set; } // 存放稀疏矩陣中非零元素的 Array
+
 
         /// <summary>
         /// Constructor of Class SparseMatrix
@@ -24,12 +31,13 @@
             Rows = rows;
             Cols = cols;
             Terms = terms;
-            SparseMatrixArray = new MatrixTerm[MaxTerms];
+            SparseMatrixArray = new MatrixTerm[Capacity];
             for (int i = 0; i < Capacity; i++)
             {
                 SparseMatrixArray[i] = new MatrixTerm();
             }
         }
+
 
         /// <summary>
         /// 轉置(Transpose)矩陣
@@ -76,6 +84,7 @@
             }
             return result;
         }
+
 
         /// <summary>
         /// 以空間換取時間的方式，壓縮本來 Typical Sparse Matrix Transpose 方法所需時平方項次的時間複雜度
@@ -166,7 +175,14 @@
             }
             return result;
         }
-        public void TypicalMatrixMultiply(SparseMatrix matrixB)
+
+
+        /// <summary>
+        /// 稀疏矩陣乘法(Sparse Matrix Multiplication)
+        /// </summary>
+        /// <param name="matrixB">要相乘的稀疏矩陣</param>
+        /// <returns>回傳相乘後的稀疏矩陣</returns>
+        public SparseMatrix? SparseMatrixMultiply_v1(SparseMatrix matrixB)
         {
             #region Description
             //            Matrix                   Row      Col          Val
@@ -187,10 +203,12 @@
             //        AB[i][j] = sum;
             //    }
             //}
+
+            // 在列表式記法下，每列資料都記載一個三元資料集 < Row, Column, Value >，而這個列表遵循著 Row index 遞增排列，而若是在相同的 Row index 下，Column index 進行遞增排列的方式
+            // 而因為我們矩陣乘法是 Matrix A 的 Rows 乘上 MatrixB 的 Cols，在這種稀疏矩陣記法中的 data row 都是採 row index 優先遞增排序方式可能會造成一些撰寫程式上的麻煩，
+            // 不如我們就把 MatrixB 做一次的 transpose 把他的 col 轉成 row，這樣我們在乘法上雙方就都可以逐 data row 看（B 已經 transpose 完了，所以他的 row 基本上是先前未轉置前的 col），
+            // 而不是一邊看 row 一邊看 col。
             #endregion
-        }
-        public SparseMatrix SparseMatrixMultiply_v1(SparseMatrix matrixB)
-        {
             if (Cols != matrixB.Rows)
             {
                 Console.WriteLine("Can not multiply, invalid dimensions");
@@ -199,24 +217,24 @@
 
             int counter = 0;
 
-            // Transpose matrixB 以比较 row 和 column 值並在末尾添加它們
+            // Transpose matrixB 以比較 row 和 column 值
             matrixB = matrixB.FasterTranspose_v1();
 
             SparseMatrix result = new SparseMatrix(Rows, matrixB.Cols, Capacity);
 
-            // 遍历结果矩阵的所有元素
+            // 遍歷結果矩陣的所有 elements
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < matrixB.Cols; j++)
                 {
-                    // 计算乘积的元素值
+                    // 計算乘積的 element value
                     int element = 0;
                     for (int k = 0; k < Cols; k++)
                     {
                         element += GetElement(i, k) * matrixB.GetElement(j, k);
                     }
 
-                    // 如果元素值不为零，则将其添加到结果矩阵中
+                    // 如果 element value 不為 0，則將其加入到結果矩陣中
                     if (element != 0)
                     {
                         result.SetElement(i, j, element, counter);
@@ -227,7 +245,13 @@
             return result;
         }
 
-        // 获取矩阵中给定位置的元素
+
+        /// <summary>
+        /// 取得矩陣中給定位置的元素
+        /// </summary>
+        /// <param name="row">目標矩陣的列</param>
+        /// <param name="col">目標矩陣的行</param>
+        /// <returns>回傳給定位置元素的值</returns>
         public int GetElement(int row, int col)
         {
             for (int i = 0; i < Terms; i++)
@@ -240,31 +264,39 @@
             return 0;
         }
 
-        // 设置矩阵中给定位置的元素
+
+        /// <summary>
+        /// 設定矩陣中給定位置的元素
+        /// </summary>
+        /// <param name="row">目標矩陣的列</param>
+        /// <param name="col">目標矩陣的行</param>
+        /// <param name="value">要設定的元素值</param>
+        /// <param name="counter">Index</param>
         public void SetElement(int row, int col, int value, int counter)
         {
-            // 如果找不到该元素，则在数组末尾添加新元素
+            // 初始化 MatrixTerm
             MatrixTerm[] tempArray = new MatrixTerm[Terms];
-
             for (int i = 0; i < Capacity; i++)
             {
                 tempArray[i] = new MatrixTerm();
             }
 
             Array.Copy(SparseMatrixArray, tempArray, Terms);
-            // 使用Array.Resize()方法对新数组进行重新分配空间
+            // 使用 Array.Resize()方法對新的 MatrixTerm Array 重新分配空間
             Array.Resize(ref tempArray, ++Terms);
 
-            // 将新数组的值赋给SparseMatrixArray属性
+            // 將新的 MatrixTerm Array 的值賦給 SparseMatrixArray 屬性
             SparseMatrixArray = tempArray;
 
-            // 最后，我们在赋值的语句中，可以将要插入的元素的值赋给新数组的最后一个元素即可：
+            // 最後，我們在賦值的語句中，可以將要插入的元素的值赋给新的 MatrixTerm Array 的第 n 個元素
             tempArray[counter].Row = row;
             tempArray[counter].Column = col;
             tempArray[counter].Value = value;
             Terms--;
         }
-        public SparseMatrix SparseMatrixMultiply_v2(SparseMatrix matrixB)
+
+
+        public SparseMatrix? SparseMatrixMultiply_v2(SparseMatrix matrixB)
         {
             if (Cols != matrixB.Rows)
             {
@@ -368,6 +400,8 @@
                 //Terms++;
             }
         }
+
+
         /// <summary>
         /// 輸出稀疏矩陣
         /// </summary>
@@ -387,6 +421,9 @@
         }
     }
 
+    /// <summary>
+    /// 紀載稀疏矩陣中非零元素 <Row, Column, Value> 的類別
+    /// </summary>
     public class MatrixTerm
     {
         public int Row { get; set; }

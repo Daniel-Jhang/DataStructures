@@ -21,8 +21,9 @@ namespace DataStructures
             //Console.WriteLine();
             #endregion
 
-            // TODO: 
-            //FactorialInArray.CaculateFactorial(5);
+            #region TODO: FactorialInArray
+
+            #endregion
 
             #region BinarySearch
             //Console.WriteLine("Binary Search");
@@ -81,63 +82,85 @@ namespace DataStructures
             //}
             #endregion
 
-            // TODO:
-            // TSet.聯集
+            #region TODO: TSet
+
+            #endregion
 
             #region SparseMatrix
-            SparseMatrix sparseMatrixA = new SparseMatrix(6, 6, 6);
-            sparseMatrixA.SparseMatrixArray[0].Row = 1;
-            sparseMatrixA.SparseMatrixArray[0].Column = 3;
-            sparseMatrixA.SparseMatrixArray[0].Value = 3;
-            sparseMatrixA.SparseMatrixArray[1].Row = 1;
-            sparseMatrixA.SparseMatrixArray[1].Column = 5;
-            sparseMatrixA.SparseMatrixArray[1].Value = 4;
-            sparseMatrixA.SparseMatrixArray[2].Row = 2;
-            sparseMatrixA.SparseMatrixArray[2].Column = 3;
-            sparseMatrixA.SparseMatrixArray[2].Value = 5;
-            sparseMatrixA.SparseMatrixArray[3].Row = 2;
-            sparseMatrixA.SparseMatrixArray[3].Column = 4;
-            sparseMatrixA.SparseMatrixArray[3].Value = 7;
-            sparseMatrixA.SparseMatrixArray[4].Row = 4;
-            sparseMatrixA.SparseMatrixArray[4].Column = 2;
-            sparseMatrixA.SparseMatrixArray[4].Value = 2;
-            sparseMatrixA.SparseMatrixArray[5].Row = 4;
-            sparseMatrixA.SparseMatrixArray[5].Column = 3;
-            sparseMatrixA.SparseMatrixArray[5].Value = 6;
+            //SparseMatrix sparseMatrixA = new SparseMatrix(6, 6, 6);
+            //sparseMatrixA.SparseMatrixArray[0].Row = 1;
+            //sparseMatrixA.SparseMatrixArray[0].Column = 3;
+            //sparseMatrixA.SparseMatrixArray[0].Value = 3;
+            //sparseMatrixA.SparseMatrixArray[1].Row = 1;
+            //sparseMatrixA.SparseMatrixArray[1].Column = 5;
+            //sparseMatrixA.SparseMatrixArray[1].Value = 4;
+            //sparseMatrixA.SparseMatrixArray[2].Row = 2;
+            //sparseMatrixA.SparseMatrixArray[2].Column = 3;
+            //sparseMatrixA.SparseMatrixArray[2].Value = 5;
+            //sparseMatrixA.SparseMatrixArray[3].Row = 2;
+            //sparseMatrixA.SparseMatrixArray[3].Column = 4;
+            //sparseMatrixA.SparseMatrixArray[3].Value = 7;
+            //sparseMatrixA.SparseMatrixArray[4].Row = 4;
+            //sparseMatrixA.SparseMatrixArray[4].Column = 2;
+            //sparseMatrixA.SparseMatrixArray[4].Value = 2;
+            //sparseMatrixA.SparseMatrixArray[5].Row = 4;
+            //sparseMatrixA.SparseMatrixArray[5].Column = 3;
+            //sparseMatrixA.SparseMatrixArray[5].Value = 6;
 
-            SparseMatrix sparseMatrixB = new SparseMatrix(6, 3, 5);
-            sparseMatrixB.SparseMatrixArray[0].Row = 1;
-            sparseMatrixB.SparseMatrixArray[0].Column = 1;
-            sparseMatrixB.SparseMatrixArray[0].Value = 2;
-            sparseMatrixB.SparseMatrixArray[1].Row = 3;
-            sparseMatrixB.SparseMatrixArray[1].Column = 1;
-            sparseMatrixB.SparseMatrixArray[1].Value = 3;
-            sparseMatrixB.SparseMatrixArray[2].Row = 4;
-            sparseMatrixB.SparseMatrixArray[2].Column = 1;
-            sparseMatrixB.SparseMatrixArray[2].Value = 4;
-            sparseMatrixB.SparseMatrixArray[3].Row = 4;
-            sparseMatrixB.SparseMatrixArray[3].Column = 2;
-            sparseMatrixB.SparseMatrixArray[3].Value = 7;
-            sparseMatrixB.SparseMatrixArray[4].Row = 5;
-            sparseMatrixB.SparseMatrixArray[4].Column = 1;
-            sparseMatrixB.SparseMatrixArray[4].Value = 1;
-            Console.WriteLine("Matrix before Transpose");
-            sparseMatrixA.PrintMatrix();
-            var result = sparseMatrixA.TypicalTranspose();
-            Console.WriteLine("Matrix after Transpose");
-            result.PrintMatrix();
+            //SparseMatrix sparseMatrixB = new SparseMatrix(6, 3, 5);
+            //sparseMatrixB.SparseMatrixArray[0].Row = 1;
+            //sparseMatrixB.SparseMatrixArray[0].Column = 1;
+            //sparseMatrixB.SparseMatrixArray[0].Value = 2;
+            //sparseMatrixB.SparseMatrixArray[1].Row = 3;
+            //sparseMatrixB.SparseMatrixArray[1].Column = 1;
+            //sparseMatrixB.SparseMatrixArray[1].Value = 3;
+            //sparseMatrixB.SparseMatrixArray[2].Row = 4;
+            //sparseMatrixB.SparseMatrixArray[2].Column = 1;
+            //sparseMatrixB.SparseMatrixArray[2].Value = 4;
+            //sparseMatrixB.SparseMatrixArray[3].Row = 4;
+            //sparseMatrixB.SparseMatrixArray[3].Column = 2;
+            //sparseMatrixB.SparseMatrixArray[3].Value = 7;
+            //sparseMatrixB.SparseMatrixArray[4].Row = 5;
+            //sparseMatrixB.SparseMatrixArray[4].Column = 1;
+            //sparseMatrixB.SparseMatrixArray[4].Value = 1;
+            //Console.WriteLine("Matrix before Transpose");
+            //sparseMatrixA.PrintMatrix();
+            //var result = sparseMatrixA.TypicalTranspose();
+            //Console.WriteLine("Matrix after Transpose");
+            //result.PrintMatrix();
 
-            Console.WriteLine("Matrix before FasterTranspose");
-            sparseMatrixA.PrintMatrix();
-            var fasterResult = sparseMatrixA.FasterTranspose_v1();
-            Console.WriteLine("Matrix after FasterTranspose");
-            fasterResult.PrintMatrix();
+            //Console.WriteLine("Matrix before FasterTranspose");
+            //sparseMatrixA.PrintMatrix();
+            //var fasterResult = sparseMatrixA.FasterTranspose_v1();
+            //Console.WriteLine("Matrix after FasterTranspose");
+            //fasterResult.PrintMatrix();
 
-            Console.WriteLine("Matrix before Multiplication");
-            sparseMatrixA.PrintMatrix();
-            var multiplyResult = sparseMatrixA.SparseMatrixMultiply_v1(sparseMatrixB);
-            Console.WriteLine("Matrix after Multiplication");
-            multiplyResult.PrintMatrix();
+            //Console.WriteLine("Matrix before Multiplication");
+            //sparseMatrixA.PrintMatrix();
+            //var multiplyResult = sparseMatrixA.SparseMatrixMultiply_v1(sparseMatrixB);
+            //Console.WriteLine("Matrix after Multiplication");
+            //multiplyResult.PrintMatrix();
+            #endregion
+
+            #region TODO: ExactStringMatch
+            //string template = "GCATCGCAGAGAGTATACAGTACG";
+            //string primer = "GCAGAGAG";
+            //var bruteForceResult = ExactStringMatch.BruteForce(template, primer);
+            //if (bruteForceResult > 0)
+            //{
+            //    Console.WriteLine($"設計的Primer({primer})，在Template: {template} 中，找到符合的Binding site，在第 {bruteForceResult + 1} 到 {bruteForceResult + primer.Length} 的位置");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Primer找不到Binding site");
+            //}
+            #endregion
+
+            #region KnightTour
+            //Console.WriteLine("使用 Recursive 來解 KnightTour 問題");
+            //KnightTour.KnightTourByRecursive();
+            //Console.WriteLine("\n使用 Stack     來解 KnightTour 問題");
+            //KnightTour.KnightTourByStack();
             #endregion
         }
     }
